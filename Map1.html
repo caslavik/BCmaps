@@ -1,10 +1,12 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="https://unpkg.com/default-passive-events"></script>
     <link rel="stylesheet" type="text/css" href="imageCompare.css">
 
 </head>
   <body>
+<!--
      <header>
          <div class="mobile-display">
             <h1>Tap top image to magnify below.</h1>
@@ -12,8 +14,10 @@
          <div class="desktop-display">
             <h1>Hover over image on left to magnify on right.</h1>
          </div>
+
       
     </header>
+-->
     <div class="wrapper">
       <div class="left">
         <img src="img/Map 1.png" />
@@ -29,13 +33,30 @@
     <script>
       const inner = document.querySelector(".inner");
       const left = document.querySelector(".left");
-      left.addEventListener("mousemove", handleMousemove, false);
+      left.addEventListener("mousemove", handleMousemove, false); // for desktop
+      left.addEventListener("touchmove", handleTouchmove, false); // for touch enable e.g. mobile
+      
+        
       function handleMousemove(event) {
         let { width, height } = this.getBoundingClientRect();
         let xAxis = event.offsetX / width * 100;
         let yAxis = event.offsetY / height * 100;
         inner.style.transform = `translate(-${xAxis}%, -${yAxis}%)`;
+      }  
+      function handleTouchmove(event) {
+       event.preventDefault(); // we don't want to scroll
+        var touch = event.touches[0];
+        let { width, height } = this.getBoundingClientRect();
+        let xAxis = touch.offsetX / width * 100;
+        let yAxis = touch.offsetY / height * 100;
+        inner.style.transform = `translate(-${xAxis}%, -${yAxis}%)`;
       }
+        
+        
+
+        
+        
+        
 
     </script>    
     </body>
