@@ -1,101 +1,42 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 25px;
-  background-color: rgb(206, 206, 63);
-}
-header h1 {
-  margin-bottom: 10px;
-}
-.wrapper {
-  display: flex;
-  max-height: 100vh;
-  width: 100%;
-  height: 80vh;
-  margin: 10px auto;
-}
+    <link rel="stylesheet" type="text/css" href="imageCompare.css">
 
-.left,
-.right {
-  flex: 1 1 auto;
-  border: 1px solid dimgray;
-  max-width: 50%;
-}
-
-.left {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.left > img {
-  width: 100%;
-  height: auto;
-  pointer-events: none;
-}
-
-.right {
-  position: relative;
-  overflow: hidden;
-}
-
-.inner {
-  position: absolute;
-  width: 400%;
-  height: 400%;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.inner > img {
-  width: 100%;
-  height: auto;
-}
-
-  </style>
 </head>
   <body>
- 
-    
-<header>
-  <h1>Zoom image onmousemove</h1>
-</header>
-<div class="wrapper">
-  <div class="left">
-    <img src="img/Map 1.png" />
-  </div>
-  <div class="right">
-    <div class="inner">
-      <img src="img/Map 1.png"  />
+     <header>
+         <div class="mobile-display">
+            <h1>Tap top image to magnify below.</h1>
+          </div>
+         <div class="desktop-display">
+            <h1>Hover over image on left to magnify on right.</h1>
+         </div>
+      
+    </header>
+    <div class="wrapper">
+      <div class="left">
+        <img src="img/Map 1.png" />
+      </div>
+      <div class="right">
+        <div class="inner">
+          <img src="img/Map 1.png"  />
+        </div>
+      </div>
     </div>
-  </div>
-</div>
 
 
-<script>
-  const inner = document.querySelector(".inner");
-  const left = document.querySelector(".left");
-  left.addEventListener("mousemove", handleMousemove, false);
-  function handleMousemove(event) {
-    let { width, height } = this.getBoundingClientRect();
-    let xAxis = event.offsetX / width * 100;
-    let yAxis = event.offsetY / height * 100;
-    inner.style.transform = `translate(-${xAxis}%, -${yAxis}%)`;
-  }
+    <script>
+      const inner = document.querySelector(".inner");
+      const left = document.querySelector(".left");
+      left.addEventListener("mousemove", handleMousemove, false);
+      function handleMousemove(event) {
+        let { width, height } = this.getBoundingClientRect();
+        let xAxis = event.offsetX / width * 100;
+        let yAxis = event.offsetY / height * 100;
+        inner.style.transform = `translate(-${xAxis}%, -${yAxis}%)`;
+      }
 
-</script>    
-</body>
+    </script>    
+    </body>
 </html>
