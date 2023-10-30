@@ -3,6 +3,9 @@
   margin: 0;
   padding: 0;
 }
+/*
+
+remove if not using header
 header {
   display: flex;
   flex-direction: column;
@@ -11,6 +14,7 @@ header {
   background-color: rgb(206, 206, 63);
 }
 header h1 {margin-bottom: 10px;}
+*/
 
 .wrapper {
   display: flex;
